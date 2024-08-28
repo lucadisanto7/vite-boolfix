@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 import SearchBar from './components/SearchBar.vue';
-import { store } from './store.js'
+import { store } from './components/store.js'
 export default{
   data(){
     return{

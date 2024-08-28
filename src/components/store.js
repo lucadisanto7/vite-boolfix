@@ -1,5 +1,4 @@
 import { reactive } from "vue";
-import axios from 'axios'
 
 export const store = reactive({
     apiUrlmovie: "https://api.themoviedb.org/3/search/movie",
