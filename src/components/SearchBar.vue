@@ -76,19 +76,19 @@ export default {
 </script>
 
 <template>
-    <div>
-        <nav class="navbar bg-body-tertiary">
+    <div class="bg-black">
+        <nav class="navbar">
             <div class="container-fluid">
-              <a class="navbar-brand">BOOLFIX</a>
+              <a class="navbar-brand red-text">BOOLFIX</a>
               <form class="d-flex" role="search" @submit.prevent="searchMoviesAndSeries">
                 <input v-model="query" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-danger" type="submit">Search</button>
               </form>
             </div>
         </nav>
 
-        <div v-if="movies.length || series.length" class="container mt-4">
-            <h3>Risultati della ricerca:</h3>
+        <div v-if="movies.length || series.length" class="containers p-5">
+            <h3 class="white-text">Risultati della ricerca:</h3>
             <div class="results-grid">
                 <!-- Film Results -->
                 <div v-for="movie in movies" :key="movie.id" class="result-item">
@@ -138,6 +138,7 @@ export default {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
+        color: white;
     }
     .result-item {
         width: 200px;
@@ -159,5 +160,12 @@ export default {
     }
     .star-empty {
         color: lightgray;
+    }
+    .red-text{
+        color: red;
+        font-size: 100px;
+    }
+    .white-text{
+        color: white;
     }
 </style>
