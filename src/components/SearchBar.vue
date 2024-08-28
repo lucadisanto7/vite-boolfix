@@ -12,32 +12,34 @@ export default {
     };
   },
   methods: {
-    async searchMoviesAndSeries() {
-      try {
-        // Chiamata API per i film
-        const movieResponse = await axios.get(store.apiUrlmovie, {
+    searchMoviesAndSeries() {
+      // Chiamata API per i film
+      axios
+        .get(store.apiUrlmovie, {
           params: {
             api_key: store.apiKey,
             query: this.query,
             language: 'it-IT',
           },
-        });
+        })
+        .then((movieResponse) => {
+          this.movies = movieResponse.data.results;
 
-        // Chiamata API per le serie TV
-        const seriesResponse = await axios.get(store.apiUrlseries, {
-          params: {
-            api_key: store.apiKey,
-            query: this.query,
-            language: 'it-IT',
-          },
+          // Chiamata API per le serie TV
+          return axios.get(store.apiUrlseries, {
+            params: {
+              api_key: store.apiKey,
+              query: this.query,
+              language: 'it-IT',
+            },
+          });
+        })
+        .then((seriesResponse) => {
+          this.series = seriesResponse.data.results;
+        })
+        .catch((error) => {
+          console.error('Errore durante la ricerca:', error);
         });
-
-        // Combina i risultati dei film e delle serie TV
-        this.movies = movieResponse.data.results;
-        this.series = seriesResponse.data.results;
-      } catch (error) {
-        console.error('Errore durante la ricerca:', error);
-      }
     },
     getFlagImage(language) {
       const languageMap = {
