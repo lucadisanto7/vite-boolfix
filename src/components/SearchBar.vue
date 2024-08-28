@@ -88,11 +88,11 @@ export default {
       </nav>
   
       <div v-if="movies.length || series.length" class="containers p-5">
-        <h3 class="white-text">Risultati della ricerca:</h3>
+        <h3 class="red-text-sm pb-4">Risultati della ricerca</h3>
   
         <!-- Sezione Film -->
         <div v-if="movies.length" class="results-section">
-          <h4 class="white-text">Film:</h4>
+          <h4 class="white-text pb-5">Film</h4>
           <div class="results-grid">
             <div v-for="movie in movies" :key="movie.id" class="result-item">
               <!-- Poster Film -->
@@ -123,7 +123,7 @@ export default {
   
         <!-- Sezione Serie TV -->
         <div v-if="series.length" class="results-section">
-          <h4 class="white-text">Serie TV:</h4>
+          <h4 class="white-text pb-5">Serie TV</h4>
           <div class="results-grid">
             <div v-for="serie in series" :key="serie.id" class="result-item">
               <!-- Poster Serie TV -->
