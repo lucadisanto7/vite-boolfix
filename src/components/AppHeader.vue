@@ -9,7 +9,7 @@ export default {
             <div class="row">
                 <div class="col-6">
                     <div class="content">
-                        <h1>BOOLFIX</h1>
+                        
                     </div>
                 </div>
             </div>
