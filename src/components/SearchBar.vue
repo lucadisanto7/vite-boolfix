@@ -88,61 +88,63 @@ export default {
       </nav>
   
       <div v-if="movies.length || series.length" class="containers p-5">
-        <h3 class="white-text">Risultati della ricerca:</h3>
-        <div class="results-grid">
-          <!-- Film Results -->
-          <div
-            v-for="movie in movies"
-            :key="movie.id"
-            class="result-item"
-          >
-            <img :src="getPosterUrl(movie.poster_path)" alt="Poster" class="poster">
-            <div class="overlay">
-              <strong>{{ movie.title }}</strong> <br>
-              Titolo Originale: {{ movie.original_title }} <br>
-              <div v-if="getFlagImage(movie.original_language)">
-                Lingua: <img :src="getFlagImage(movie.original_language)" alt="flag" class="flag-icon">
+        <h3 class="red-text-sm pb-3">Risultati della ricerca</h3>
+  
+        <!-- Sezione Film -->
+        <div v-if="movies.length" class="results-section">
+          <h4 class="white-text pb-5">Film</h4>
+          <div class="results-grid">
+            <div v-for="movie in movies" :key="movie.id" class="result-item">
+              <img :src="getPosterUrl(movie.poster_path)" alt="Poster" class="poster">
+              <div class="overlay">
+                <strong>{{ movie.title }}</strong> <br>
+                Titolo Originale: {{ movie.original_title }} <br>
+                <div v-if="getFlagImage(movie.original_language)">
+                  Lingua: <img :src="getFlagImage(movie.original_language)" alt="flag" class="flag-icon">
+                </div>
+                <div v-else>
+                  Lingua: {{ movie.original_language }}
+                </div>
+                <div>
+                  Voto:
+                  <span v-for="n in getStarRating(movie.vote_average)" :key="n" class="star">★</span>
+                  <span v-for="n in 5 - getStarRating(movie.vote_average)" :key="n" class="star-empty">☆</span>
+                </div>
+                <p class="overview">{{ movie.overview }}</p>
               </div>
-              <div v-else>
-                Lingua: {{ movie.original_language }}
-              </div>
-              <div>
-                Voto:
-                <span v-for="n in getStarRating(movie.vote_average)" :key="n" class="star">★</span>
-                <span v-for="n in 5 - getStarRating(movie.vote_average)" :key="n" class="star-empty">☆</span>
-              </div>
-              <p class="overview">{{ movie.overview }}</p>
             </div>
           </div>
+        </div>
   
-          <!-- Series Results -->
-          <div
-            v-for="serie in series"
-            :key="serie.id"
-            class="result-item"
-          >
-            <img :src="getPosterUrl(serie.poster_path)" alt="Poster" class="poster">
-            <div class="overlay">
-              <strong>{{ serie.name }}</strong> <br>
-              Titolo Originale: {{ serie.original_name }} <br>
-              <div v-if="getFlagImage(serie.original_language)">
-                Lingua: <img :src="getFlagImage(serie.original_language)" alt="flag" class="flag-icon">
+        <!-- Sezione Serie TV -->
+        <div v-if="series.length" class="results-section">
+          <h4 class="white-text py-5">Serie TV</h4>
+          <div class="results-grid">
+            <div v-for="serie in series" :key="serie.id" class="result-item">
+              <img :src="getPosterUrl(serie.poster_path)" alt="Poster" class="poster">
+              <div class="overlay">
+                <strong>{{ serie.name }}</strong> <br>
+                Titolo Originale: {{ serie.original_name }} <br>
+                <div v-if="getFlagImage(serie.original_language)">
+                  Lingua: <img :src="getFlagImage(serie.original_language)" alt="flag" class="flag-icon">
+                </div>
+                <div v-else>
+                  Lingua: {{ serie.original_language }}
+                </div>
+                <div>
+                  Voto:
+                  <span v-for="n in getStarRating(serie.vote_average)" :key="n" class="star">★</span>
+                  <span v-for="n in 5 - getStarRating(serie.vote_average)" :key="n" class="star-empty">☆</span>
+                </div>
+                <p class="overview">{{ serie.overview }}</p>
               </div>
-              <div v-else>
-                Lingua: {{ serie.original_language }}
-              </div>
-              <div>
-                Voto:
-                <span v-for="n in getStarRating(serie.vote_average)" :key="n" class="star">★</span>
-                <span v-for="n in 5 - getStarRating(serie.vote_average)" :key="n" class="star-empty">☆</span>
-              </div>
-              <p class="overview">{{ serie.overview }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </template>
+  
   
 
 <style scoped>
@@ -223,9 +225,15 @@ export default {
     font-size: 70px;
     font-weight: 700;
   }
-  
+  .red-text-sm{
+    color: red;
+    font-size: 35px;
+    text-align: center;
+  }
   .white-text {
     color: white;
+    font-size: 35px;
+    text-align: center;
   }
   
   
