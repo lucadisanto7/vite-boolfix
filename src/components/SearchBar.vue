@@ -88,14 +88,19 @@ export default {
       </nav>
   
       <div v-if="movies.length || series.length" class="containers p-5">
-        <h3 class="red-text-sm pb-3">Risultati della ricerca</h3>
+        <h3 class="white-text">Risultati della ricerca:</h3>
   
         <!-- Sezione Film -->
         <div v-if="movies.length" class="results-section">
-          <h4 class="white-text pb-5">Film</h4>
+          <h4 class="white-text">Film:</h4>
           <div class="results-grid">
             <div v-for="movie in movies" :key="movie.id" class="result-item">
-              <img :src="getPosterUrl(movie.poster_path)" alt="Poster" class="poster">
+              <!-- Poster Film -->
+              <img
+                :src="movie.poster_path ? `https://image.tmdb.org/t/p/w342/${movie.poster_path}` : `https://placehold.co/342x513?text=${movie.title}`"
+                alt="Poster"
+                class="poster"
+              />
               <div class="overlay">
                 <strong>{{ movie.title }}</strong> <br>
                 Titolo Originale: {{ movie.original_title }} <br>
@@ -118,10 +123,15 @@ export default {
   
         <!-- Sezione Serie TV -->
         <div v-if="series.length" class="results-section">
-          <h4 class="white-text py-5">Serie TV</h4>
+          <h4 class="white-text">Serie TV:</h4>
           <div class="results-grid">
             <div v-for="serie in series" :key="serie.id" class="result-item">
-              <img :src="getPosterUrl(serie.poster_path)" alt="Poster" class="poster">
+              <!-- Poster Serie TV -->
+              <img
+                :src="serie.poster_path ? `https://image.tmdb.org/t/p/w342/${serie.poster_path}` : `https://placehold.co/342x513?text=${serie.name}`"
+                alt="Poster"
+                class="poster"
+              />
               <div class="overlay">
                 <strong>{{ serie.name }}</strong> <br>
                 Titolo Originale: {{ serie.original_name }} <br>
@@ -144,6 +154,7 @@ export default {
       </div>
     </div>
   </template>
+  
   
   
 
