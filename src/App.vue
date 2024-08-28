@@ -6,16 +6,11 @@ import AppMain from './components/AppMain.vue';
 import SearchBar from './components/SearchBar.vue';
 import { store } from './components/store.js'
 export default{
-  data(){
-    return{
-      store,
-      axios
-    }
-  },
   components:{
     AppHeader,
     AppMain,
-    SearchBar
+    SearchBar,
+    store,
   }
 }
 </script>
