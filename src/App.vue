@@ -3,12 +3,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
-import AppFooter from './components/AppFooter.vue';
-export default {
+import SearchBar from './components/SearchBar.vue';
+import { store } from './store.js'
+export default{
+  data(){
+    return{
+      store,
+      axios
+    }
+  },
   components:{
     AppHeader,
     AppMain,
-    AppFooter
+    SearchBar
   }
 }
 </script>
@@ -16,7 +23,7 @@ export default {
   <div>
     <AppHeader />
     <AppMain />
-    <AppFooter />
+    <SearchBar />
   </div>
 </template>
 <style lang="scss">
